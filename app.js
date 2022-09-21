@@ -1,9 +1,13 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const http = require('http')
 
-const http = require('http');
-const port = 3000
+const port = 3000;
+
+// created local server 
 
 const server = http.createServer(function(req, res) {
-  res.write('hello Node')
+  res.console.log('server test')
   res.end()
 })
 
@@ -13,4 +17,7 @@ server.listen(port, function(error) {
   } else {
     console.log('Sever is listening on port' + port)
   }
-})
+});
+
+
+
