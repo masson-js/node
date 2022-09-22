@@ -2,18 +2,11 @@ const { Router } = require("express");
 const router = Router()
 const UserModel = require('../models/User')
 
-const axios = require('axios');
-
-const fs = require("fs");
-const { stringify } = require("csv-stringify");
-
-
-
 
 router.post('/user', User);
 router.post('/create', CreateUser);
 router.get('/find', FindUser);
-router.get('/get-csv',Csv);
+
 
 //check user age for adult
 
@@ -74,43 +67,6 @@ async function FindUser(req, res, next) {
   res.status(201).send({listOfFullNames});
 
 }
-
-
-async function Csv(req, res,) {
-
-  try {
-    const apiUsers = await axios
-    .get('https://reqres.in/api/users')
-    .then(res => res.data)
-    .catch((error) => {
-      console.log(error)
-    });
-    if (apiUsers.data && apiUsers.data.length) {
-      const filename = "saved_from_db.csv";
-      const writableStream = fs.createWriteStream(filename);
-
-      const columns = [
-        "ID",
-        "Email",
-        "First Name",
-        "LastName"
-      ];
-      const stringifier = stringify({ header: true, columns: columns });
-        apiUsers.data.forEach(user => {
-          let row = [user.id, user.email, user.first_name, user.last_name];
-          stringifier.write(row);
-        }
-        );
-      stringifier.pipe(writableStream);
-
-      return res.status(200).send({ msg: 'well done', users: apiUsers.data});
-    }
-    res.status(400).send({msg: 'not found!', res: apiUsers});
-    }
-  catch (err) {
-    res.status(500).send({msg: 'Server is dead'});
-  }
-  }
 
 module.exports = router
 
