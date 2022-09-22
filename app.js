@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http')
 
+const userCheckAge = require('./routes/user')
+
 const app = express();
 const PORT = 3000;
 
@@ -26,6 +28,9 @@ async function start() {
 }
 
 start();
+
+
+
 
 
  
