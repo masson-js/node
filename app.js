@@ -2,21 +2,23 @@ const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http')
 
-const userCheckAge = require('./routes/user')
+const User = require('./routes/user')
 
 const app = express();
+
 app.use(express.json({ extended: true }));
 
-app.use('/api/users', userCheckAge);
+app.use('/api/users', User);
+
 
 
 const PORT = 3000;
 
-const MONGODB_URI = 'mongodb+srv://masson:VeraSimon1989@cluster0.pdbfls9.mongodb.net/sample_airbnb?retryWrites=true&w=majority';
+const MONGODB_URL = 'mongodb+srv://masson:VeraSimon1989@cluster0.pdbfls9.mongodb.net/users-app?retryWrites=true&w=majority';
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URI, {
+    await mongoose.connect(MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
