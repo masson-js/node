@@ -5,11 +5,14 @@ const http = require('http')
 const userCheckAge = require('./routes/user')
 
 const app = express();
-const PORT = 3000;
-
 app.use(express.json({ extended: true }));
 
-const MONGODB_URI = 'mongodb+srv://masson:zO3IvErzG6rkxRme@cluster0.pdbfls9.mongodb.net/sample_airbnb?retryWrites=true&w=majority';
+app.use('/api/users', userCheckAge);
+
+
+const PORT = 3000;
+
+const MONGODB_URI = 'mongodb+srv://masson:VeraSimon1989@cluster0.pdbfls9.mongodb.net/sample_airbnb?retryWrites=true&w=majority';
 
 async function start() {
   try {
@@ -19,15 +22,18 @@ async function start() {
     });
 
     app.listen(PORT, () =>
-      console.log('App has been started on port ${PORT}...')
+      console.log('App has been started on port' + PORT)
     );
   } catch (e) {
-    console.error("Server Error", e.message);
+    console.error('Server Error', e.message);
     process.exit(1);
   }
 }
 
 start();
+
+
+
 
 
 
