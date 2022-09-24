@@ -8,6 +8,7 @@ router.post('/create', CreateUser);
 router.get('/find', FindUser);
 
 
+
 //check user age for adult
 
 function User(req, res, next) {
@@ -47,6 +48,7 @@ async function CreateUser(req, res, next) {
 }
 
 // lets find users by e-mail
+// ?email=vava@gg.net
 
 async function FindUser(req, res, next) {
   

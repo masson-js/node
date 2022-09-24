@@ -13,11 +13,11 @@ app.use('/api/users', User);
 
 const PORT = 3000;
 
-const MONGODB_URL = 'mongodb+srv://masson:VeraSimon1989@cluster0.pdbfls9.mongodb.net/users-app?retryWrites=true&w=majority';
+const MONGODB_URI = 'mongodb+srv://masson:VeraSimon1989@cluster0.pdbfls9.mongodb.net/users-app?retryWrites=true&w=majority';
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URL, {
+    await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
